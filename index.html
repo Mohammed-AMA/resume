@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Mohammed A. Almeshari</title>
+
+  <!-- English fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;600&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Alyamama: Saudi Arabic typeface — drop Alyamama.woff2 next to index.html to activate -->
+  <style>
+    @font-face {
+      font-family: 'Alyamama';
+      src: url('Alyamama.woff2') format('woff2'),
+           url('Alyamama.ttf')   format('truetype');
+      font-weight: 400 700;
+      font-display: swap;
+    }
+  </style>
+  <!-- Cairo — public fallback for DIN Next LT Arabic -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /*
+      DIN Next LT Arabic (Linotype) — commercial font.
+      Drop DINNextLTArabic-Regular.woff2 and DINNextLTArabic-Medium.woff2
+      next to index.html to activate. Cairo is used as fallback.
+    */
+    @font-face {
+      font-family: 'DIN Next LT Arabic';
+      src: url('DINNextLTArabic-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'DIN Next LT Arabic';
+      src: url('DINNextLTArabic-Medium.woff2') format('woff2');
+      font-weight: 600 700;
+      font-display: swap;
+    }
+  </style>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #f7f5f0;
+      --surface:  #ffffff;
+      --surface2: #f0ede7;
+      --border:   #e0d9ce;
+      --amber:    #9a6f2f;
+      --amber-lt: #c49a52;
+      --amber-bg: #fdf4e3;
+      --text:     #1c1a17;
+      --muted:    #7a7265;
+      --serif:    'Playfair Display', Georgia, serif;
+      --sans:     'Mulish', sans-serif;
+      --arabic:   'DIN Next LT Arabic', 'Cairo', sans-serif;
+      --arabic-name: 'Alyamama', 'Rubik', serif;
+      --arabic-heading: 'Rubik', 'DIN Next LT Arabic', 'Cairo', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Arabic mode ── */
+    html[lang="ar"] body        { font-family: var(--arabic); font-size: 16px; }
+    html[lang="ar"] h2.section-title,
+    html[lang="ar"] .entry-title,
+    html[lang="ar"] .award-title,
+    html[lang="ar"] .skill-card h4,
+    html[lang="ar"] .nav-name,
+    html[lang="ar"] .org-name,
+    html[lang="ar"] .profile-card-name { font-family: var(--arabic-heading) !important; }
+    html[lang="ar"] .en         { display: none !important; }
+    html[lang="en"] .ar         { display: none !important; }
+    html[lang="ar"]             { direction: rtl; }
+    html[lang="ar"] .entry-date { text-align: left; }
+    html[lang="ar"] .entry-bullets li { padding-left: 0; padding-right: 1.1rem; }
+    html[lang="ar"] .entry-bullets li::before { left: auto; right: 0; content: '‹'; }
+    html[lang="ar"] .skill-card li { padding-left: 0; padding-right: .9rem; }
+    html[lang="ar"] .skill-card li::before { left: auto; right: 0; }
+    html[lang="ar"] .profile-arrow { transform: scaleX(-1); }
+    html[lang="ar"] .profile-card:hover .profile-arrow { transform: scaleX(-1) translateX(-3px); }
+
+    /* ── Sticky nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247,245,240,.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 8px rgba(0,0,0,.06);
+    }
+
+    .nav-inner {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: .7rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-name {
+      font-family: var(--serif);
+      font-size: .88rem;
+      color: var(--amber);
+      letter-spacing: .02em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: .25rem .75rem;
+      font-size: .7rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      transition: color .2s, background .2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--amber);
+      background: var(--amber-bg);
+    }
+
+    .lang-toggle {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: .28rem .85rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--amber);
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+      white-space: nowrap;
+      font-family: var(--sans);
+      flex-shrink: 0;
+    }
+    .lang-toggle:hover { background: var(--amber-bg); border-color: var(--amber-lt); }
+
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      padding: .3rem;
+      border: none;
+      background: none;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--amber);
+      border-radius: 2px;
+      transition: transform .2s, opacity .2s;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: .5rem 1.5rem 1rem;
+    }
+    .mobile-menu a {
+      padding: .5rem 0;
+      font-size: .82rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover, .mobile-menu a.active { color: var(--amber); }
+    .mobile-menu.open { display: flex; }
+
+    /* ── Page ── */
+    .page {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 3rem 2rem 6rem;
+    }
+
+    /* ── Header ── */
+    .header-inner {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 2.8rem;
+      align-items: center;
+      padding-bottom: 2.8rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp .7s ease both;
+    }
+
+    .photo-wrap {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2.5px solid var(--amber-lt);
+      box-shadow: 0 4px 24px rgba(154,111,47,.15);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-placeholder { font-family: var(--serif); font-size: 2.6rem; color: var(--amber-lt); opacity: .5; }
+
+    .header-text h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      letter-spacing: -.01em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+    .header-text h1 span { color: var(--amber); }
+    .arabic-name-heading,
+    html[lang="ar"] .arabic-name-heading {
+      font-family: 'Alyamama', 'Rubik', serif !important;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+    }
+
+    .credentials-row {
+      margin-top: .65rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+
+    .badge {
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .18rem .6rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--muted);
+      background: var(--surface2);
+    }
+    .badge.gold { border-color: rgba(154,111,47,.35); color: var(--amber); background: var(--amber-bg); }
+
+    .contact-row {
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      align-items: center;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .35rem .8rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: .77rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    }
+    .contact-btn:hover { border-color: var(--amber-lt); color: var(--amber); background: var(--amber-bg); }
+
+    /* ── Section ── */
+    section { margin-bottom: 2.8rem; animation: fadeUp .7s ease both; }
+    section:nth-child(1){animation-delay:.05s}
+    section:nth-child(2){animation-delay:.1s}
+    section:nth-child(3){animation-delay:.15s}
+    section:nth-child(4){animation-delay:.2s}
+    section:nth-child(5){animation-delay:.25s}
+    section:nth-child(6){animation-delay:.3s}
+    section:nth-child(7){animation-delay:.35s}
+    section:nth-child(8){animation-delay:.4s}
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1.3rem;
+    }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+
+    h2.section-title {
+      font-family: var(--serif);
+      font-size: .95rem;
+      font-weight: 400;
+      color: var(--amber);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── Entry ── */
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 2rem;
+      row-gap: .12rem;
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: .65rem;
+      transition: border-color .2s, box-shadow .2s;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+    .entry:hover { border-color: var(--amber-lt); box-shadow: 0 4px 16px rgba(154,111,47,.08); }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-title { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--text); grid-column: 1; }
+    .entry-org   { font-size: .79rem; color: var(--muted); grid-column: 1; }
+    .entry-date  {
+      font-size: .7rem; color: var(--amber); font-weight: 600;
+      letter-spacing: .04em; text-align: right;
+      grid-column: 2; grid-row: 1 / 3;
+      align-self: start; white-space: nowrap; padding-top: .2rem;
+    }
+    .entry-bullets {
+      grid-column: 1 / -1;
+      margin-top: .5rem; padding-top: .5rem;
+      border-top: 1px dashed var(--border);
+    }
+    .entry-bullets ul { list-style: none; padding: 0; }
+    .entry-bullets li {
+      font-size: .8rem; color: var(--muted);
+      line-height: 1.65; padding-left: 1.1rem;
+      position: relative; margin-bottom: .15rem;
+    }
+    .entry-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--amber-lt); }
+
+    /* ── Pill grid ── */
+    .pill-grid { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .pill {
+      display: flex; align-items: center; gap: .45rem;
+      padding: .38rem .9rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 30px; font-size: .76rem; color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,.04);
+      transition: border-color .2s;
+    }
+    .pill:hover { border-color: var(--amber-lt); }
+    .pill-year { font-size: .66rem; color: var(--amber); font-weight: 600; }
+
+    /* ── Awards ── */
+    .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px,1fr)); gap: .7rem; }
+    .award-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1rem 1.1rem; position: relative; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .award-card:hover { border-color: var(--amber-lt); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(154,111,47,.1); }
+    .award-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--amber), transparent);
+    }
+    .award-title { font-family: var(--serif); font-size: .9rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .award-org   { font-size: .71rem; color: var(--muted); margin-top: .3rem; line-height: 1.4; }
+    .award-year  { font-size: .69rem; color: var(--amber); font-weight: 600; margin-top: .4rem; }
+
+    /* ── Profile cards ── */
+    .profile-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: .7rem; }
+    .profile-card {
+      display: flex; align-items: center; gap: .95rem;
+      padding: .9rem 1.1rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      text-decoration: none; color: var(--text);
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .profile-card:hover { border-color: var(--amber-lt); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(154,111,47,.1); }
+    .profile-icon {
+      width: 36px; height: 36px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: .58rem; font-weight: 700;
+      font-family: sans-serif; color: white; text-align: center; line-height: 1.2;
+    }
+    .profile-card-body { flex: 1; min-width: 0; }
+    .profile-card-name { font-size: .84rem; font-weight: 600; color: var(--text); }
+    .profile-card-id   { font-family: monospace; font-size: .65rem; color: var(--amber); margin: .1rem 0 .22rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .profile-card-desc { font-size: .71rem; color: var(--muted); line-height: 1.4; }
+    .profile-arrow { color: var(--amber-lt); opacity: 0; transition: opacity .2s, transform .2s; font-size: .9rem; flex-shrink: 0; }
+    .profile-card:hover .profile-arrow { opacity: 1; transform: translateX(3px); }
+
+    /* ── Skills ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap: .7rem; }
+    .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+    .skill-card h4 { font-family: var(--serif); font-size: .86rem; color: var(--amber); margin-bottom: .45rem; }
+    .skill-card ul { list-style: none; padding: 0; }
+    .skill-card li { font-size: .76rem; color: var(--muted); line-height: 1.6; padding-left: .9rem; position: relative; }
+    .skill-card li::before { content: '·'; position: absolute; left: 0; color: var(--amber-lt); }
+
+    /* ── Org list ── */
+    .org-list { display: flex; flex-direction: column; gap: .55rem; }
+    .org-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .75rem 1.2rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 8px;
+      font-size: .81rem; gap: 1rem; flex-wrap: wrap;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+    .org-name  { color: var(--text); font-weight: 600; }
+    .org-since { color: var(--amber); font-size: .72rem; letter-spacing: .04em; white-space: nowrap; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center; font-size: .71rem; color: var(--muted);
+      border-top: 1px solid var(--border); padding-top: 1.5rem; margin-top: 3rem;
+    }
+    footer a { color: var(--amber); text-decoration: none; }
+    footer code { font-size: .66rem; background: var(--surface2); padding: .1rem .4rem; border-radius: 3px; }
+
+    /* ── Animation ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .nav-links  { display: none; }
+      .hamburger  { display: flex; }
+      .nav-inner  { padding: .6rem 1rem; }
+      .page       { padding: 1.5rem 1rem 4rem; }
+      .header-inner { grid-template-columns: 1fr; gap: 1.4rem; text-align: center; }
+      .photo-wrap { width: 100px; height: 100px; margin: 0 auto; }
+      .credentials-row { justify-content: center; }
+      .contact-row { justify-content: center; }
+      .entry { grid-template-columns: 1fr; }
+      .entry-date { grid-column: 1; grid-row: auto; text-align: left; margin-bottom: .2rem; }
+      html[lang="ar"] .entry-date { text-align: right; }
+      .awards-grid { grid-template-columns: 1fr 1fr; }
+      .profile-cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 430px) {
+      .awards-grid { grid-template-columns: 1fr; }
+      .header-text h1 { font-size: 1.55rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      /* ── Language toggle ── */
+      document.getElementById('langBtn').addEventListener('click', function () {
+        var html = document.documentElement;
+        var btn  = this;
+        if (html.getAttribute('lang') === 'en') {
+          html.setAttribute('lang', 'ar');
+          html.setAttribute('dir', 'rtl');
+          btn.textContent = 'English';
+        } else {
+          html.setAttribute('lang', 'en');
+          html.setAttribute('dir', 'ltr');
+          btn.textContent = 'العربية';
+        }
+      });
+
+      /* ── Mobile menu ── */
+      document.getElementById('hamburger').addEventListener('click', function () {
+        document.getElementById('mobile-menu').classList.toggle('open');
+      });
+      document.querySelectorAll('#mobile-menu a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          document.getElementById('mobile-menu').classList.remove('open');
+        });
+      });
+
+      /* ── Active nav links on scroll ── */
+      var sections = ['education','certs','experience','awards','profiles','skills'];
+      function navHeight() { return document.getElementById('main-nav').offsetHeight; }
+
+      function onScroll() {
+        var scrollY = window.scrollY + navHeight() + 24;
+        var current = sections[0];
+        sections.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el && el.offsetTop <= scrollY) current = id;
+        });
+        document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function (a) {
+          var sec = a.getAttribute('data-section') || (a.getAttribute('href') || '').replace('#','');
+          a.classList.toggle('active', sec === current);
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    });
+  </script>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <div class="nav-name en">Dr. Mohammed A. Almeshari</div>
+    <div class="nav-name ar">د. محمد بن أحمد المشاري</div>
+
+    <ul class="nav-links en" id="nav-links-en">
+      <li><a href="#education"   data-section="education">Education</a></li>
+      <li><a href="#certs"       data-section="certs">Certifications</a></li>
+      <li><a href="#experience"  data-section="experience">Experience</a></li>
+      <li><a href="#awards"      data-section="awards">Awards</a></li>
+      <li><a href="#profiles"    data-section="profiles">Research</a></li>
+      <li><a href="#skills"      data-section="skills">Skills</a></li>
+    </ul>
+    <ul class="nav-links ar" id="nav-links-ar">
+      <li><a href="#education"   data-section="education">التعليم</a></li>
+      <li><a href="#certs"       data-section="certs">الشهادات</a></li>
+      <li><a href="#experience"  data-section="experience">الخبرة</a></li>
+      <li><a href="#awards"      data-section="awards">الجوائز</a></li>
+      <li><a href="#profiles"    data-section="profiles">الأبحاث</a></li>
+      <li><a href="#skills"      data-section="skills">المهارات</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="lang-toggle" id="langBtn">العربية</button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#education"  class="en">Education</a>
+  <a href="#education"  class="ar">التعليم</a>
+  <a href="#certs"      class="en">Certifications</a>
+  <a href="#certs"      class="ar">الشهادات</a>
+  <a href="#experience" class="en">Experience</a>
+  <a href="#experience" class="ar">الخبرة</a>
+  <a href="#awards"     class="en">Awards</a>
+  <a href="#awards"     class="ar">الجوائز</a>
+  <a href="#profiles"   class="en">Research Profiles</a>
+  <a href="#profiles"   class="ar">الملفات البحثية</a>
+  <a href="#skills"     class="en">Skills</a>
+  <a href="#skills"     class="ar">المهارات</a>
+</div>
+
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <div class="header-inner">
+    <div class="photo-wrap">
+      <img src="https://raw.githubusercontent.com/Mohammed-AMA/resume/refs/heads/main/prfile_pic.jpeg" alt="Dr. Mohammed A. Almeshari" />
+    </div>
+    <div class="header-text">
+      <h1 class="en">Dr. Mohammed <span>A.</span> Almeshari</h1>
+      <h1 class="ar arabic-name-heading">د. محمد بن أحمد <span>المشاري</span></h1>
+      <div class="credentials-row">
+        <span class="badge gold en">PhD</span>
+        <span class="badge gold ar">دكتوراه</span>
+        <span class="badge en">RRT-NPS · RPFT</span>
+        <span class="badge en">Assistant Professor</span>
+        <span class="badge ar">أستاذ مساعد</span>
+        <span class="badge en">Senior Specialist – SCFHS</span>
+        <span class="badge ar">أخصائي أول – الهيئة السعودية للتخصصات الصحية</span>
+      </div>
+      <div class="contact-row">
+        <a class="contact-btn" href="/cdn-cgi/l/email-protection#3c515d5051594f545d4e557c574f4912595849124f5d" title="malmeshari@ksu.edu.sa" aria-label="Email">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        </a>
+        <a class="contact-btn" href="https://malmeshari.bio.link/" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          bio.link
+        </a>
+        <a class="contact-btn" href="https://orcid.org/0000-0001-8449-9491" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg>
+          ORCiD
+        </a>
+        <div class="contact-btn" style="pointer-events:none;color:var(--muted);border-style:dashed;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span class="en">Riyadh, KSA</span>
+          <span class="ar">الرياض، السعودية</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education">
+    <div class="section-header">
+      <h2 class="section-title en">Education</h2>
+      <h2 class="section-title ar">التعليم</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Doctor of Philosophy (PhD)</div>
+      <div class="entry-title ar">دكتوراه في الفلسفة</div>
+      <div class="entry-org en">University of Birmingham, Birmingham, UK</div>
+      <div class="entry-org ar">جامعة برمنغهام، المملكة المتحدة</div>
+      <div class="entry-date">May 2023</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Master of Health Science, Respiratory Therapy</div>
+      <div class="entry-title ar">ماجستير العلوم الصحية – علاج الجهاز التنفسي</div>
+      <div class="entry-org en">Georgia State University, Atlanta, GA, USA</div>
+      <div class="entry-org ar">جامعة ولاية جورجيا، أتلانتا، الولايات المتحدة</div>
+      <div class="entry-date">Dec 2014</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Bachelor of Science in Respiratory Care</div>
+      <div class="entry-title ar">بكالوريوس العلوم في الرعاية التنفسية</div>
+      <div class="entry-org en">Shenandoah University, Winchester, VA, USA</div>
+      <div class="entry-org ar">جامعة شينانداه، وينشستر، الولايات المتحدة</div>
+      <div class="entry-date">Aug 2013</div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ── -->
+  <section id="certs">
+    <div class="section-header">
+      <h2 class="section-title en">Board Certifications</h2>
+      <h2 class="section-title ar">الشهادات المهنية</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="pill-grid">
+      <div class="pill">
+        <span class="en">Senior Specialist, Respiratory Care – SCFHS</span>
+        <span class="ar">أخصائي أول، الرعاية التنفسية – الهيئة السعودية للتخصصات الصحية</span>
+        <span class="pill-year">2017</span>
+      </div>
+      <div class="pill">
+        <span class="en">Certified Asthma Educator (AE-C)</span>
+        <span class="ar">مُعلِّم الربو المعتمد (AE-C)</span>
+        <span class="pill-year">2014</span>
+      </div>
+      <div class="pill">
+        <span class="en">Registered Pulmonary Function Technologist (RPFT)</span>
+        <span class="ar">أخصائي وظائف رئوية مسجل (RPFT)</span>
+        <span class="pill-year">2014</span>
+      </div>
+      <div class="pill">
+        <span class="en">Neonatal/Pediatrics Specialist (NPS)</span>
+        <span class="ar">أخصائي حديثي الولادة والأطفال (NPS)</span>
+        <span class="pill-year">2014</span>
+      </div>
+      <div class="pill">
+        <span class="en">Registered Respiratory Therapist (RRT)</span>
+        <span class="ar">معالج تنفسي مسجل (RRT)</span>
+        <span class="pill-year">2013</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WORK EXPERIENCE ── -->
+  <section id="experience">
+    <div class="section-header">
+      <h2 class="section-title en">Work Experience</h2>
+      <h2 class="section-title ar">الخبرة المهنية</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Assistant Professor</div>
+      <div class="entry-title ar">أستاذ مساعد</div>
+      <div class="entry-org en">Rehabilitation Health Sciences Dept., CAMS, King Saud University</div>
+      <div class="entry-org ar">قسم علوم الصحة التأهيلية، كلية العلوم الطبية التطبيقية، جامعة الملك سعود</div>
+      <div class="entry-date en">May 2023 – Present</div>
+      <div class="entry-date ar">مايو 2023 – حاضر</div>
+      <div class="entry-bullets"><ul>
+        <li class="en">Rapporteur and Member of Department Council — prepares meeting minutes, official records, and ensures compliance with university protocols.</li>
+        <li class="ar">مقرر وعضو مجلس القسم — إعداد محاضر الاجتماعات والسجلات الرسمية وضمان الامتثال للوائح الجامعة.</li>
+        <li class="en">Supervisor of the Respiratory Therapy Clinic, overseeing clinical operations, staff supervision, and student rotations at CAMS.</li>
+        <li class="ar">مشرف عيادة العلاج التنفسي — يشرف على العمليات السريرية والكوادر البشرية ودوران الطلاب.</li>
+        <li class="en">Supervisor of the Data Office Unit — data governance, analytics, and strategic reporting for CAMS.</li>
+        <li class="ar">مشرف وحدة مكتب البيانات — حوكمة البيانات والتحليل والتقارير الاستراتيجية.</li>
+        <li class="en">Chair, Statistics and IT Committee — developed a portfolio management system for all department staff.</li>
+        <li class="ar">رئيس لجنة الإحصاء وتقنية المعلومات — طوّر نظام إدارة المحافظ لجميع أعضاء الهيئة التدريسية.</li>
+        <li class="en">Peer reviewer for European Respiratory Review Journal (Q1, WoS); teaches Pulmonary Function Testing and other courses.</li>
+        <li class="ar">محكّم في دورية المراجعة التنفسية الأوروبية (Q1)؛ يُدرّس مقررات اختبار وظائف الرئة وغيرها.</li>
+      </ul></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Honorary Research Fellow</div>
+      <div class="entry-title ar">باحث فخري</div>
+      <div class="entry-org en">Institute of Inflammation and Aging, University of Birmingham</div>
+      <div class="entry-org ar">معهد الالتهاب والشيخوخة، جامعة برمنغهام</div>
+      <div class="entry-date en">Aug 2023 – Present</div>
+      <div class="entry-date ar">أغسطس 2023 – حاضر</div>
+      <div class="entry-bullets"><ul>
+        <li class="en">Co-supervising a PhD student on small airways function during asthma exacerbations; participating in related research projects.</li>
+        <li class="ar">الإشراف المشترك على طالب دكتوراه في وظيفة المجاري الهوائية الصغيرة أثناء نوبات الربو.</li>
+      </ul></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Academic Editor</div>
+      <div class="entry-title ar">محرر أكاديمي</div>
+      <div class="entry-org en">PLOS ONE Journal</div>
+      <div class="entry-org ar">دورية PLOS ONE</div>
+      <div class="entry-date en">Mar 2023 – Present</div>
+      <div class="entry-date ar">مارس 2023 – حاضر</div>
+      <div class="entry-bullets"><ul>
+        <li class="en">Manages the full peer review lifecycle: initial assessment, reviewer allocation, editorial decisions, and author communications.</li>
+        <li class="ar">يدير دورة المراجعة العلمية الكاملة: التقييم الأولي، وتعيين المحكمين، والقرارات التحريرية، والتواصل مع المؤلفين.</li>
+      </ul></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">PhD Researcher</div>
+      <div class="entry-title ar">باحث دكتوراه</div>
+      <div class="entry-org en">Institute of Inflammation and Aging, University of Birmingham</div>
+      <div class="entry-org ar">معهد الالتهاب والشيخوخة، جامعة برمنغهام</div>
+      <div class="entry-date en">Jan 2019 – May 2023</div>
+      <div class="entry-date ar">يناير 2019 – مايو 2023</div>
+      <div class="entry-bullets"><ul>
+        <li class="en">Investigated small airways involvement in asthma and COPD under Profs. Elizabeth Sapey and Robert Stockley.</li>
+        <li class="ar">بحث في دور المجاري الهوائية الصغيرة في الربو والانسداد الرئوي المزمن تحت إشراف الأستاذة سابي والأستاذ ستوكلي.</li>
+        <li class="en">Published four papers as primary investigator in WoS-indexed peer-reviewed journals.</li>
+        <li class="ar">نشر أربعة أبحاث بوصفه الباحث الرئيسي في دوريات مفهرسة في Web of Science.</li>
+        <li class="en">Good Clinical Practice (HRA/NIHR, UK) · HEFi Horizon Award (2019) · Saudi Cultural Bureau Academic Achievement Award (2021).</li>
+        <li class="ar">شهادة الممارسة السريرية الجيدة · جائزة HEFi Horizon (2019) · جائزة التفوق الأكاديمي من الملحقية الثقافية السعودية (2021).</li>
+      </ul></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Lecturer</div>
+      <div class="entry-title ar">محاضر</div>
+      <div class="entry-org en">Rehabilitation Health Sciences Dept., CAMS, King Saud University</div>
+      <div class="entry-org ar">قسم علوم الصحة التأهيلية، كلية العلوم الطبية التطبيقية، جامعة الملك سعود</div>
+      <div class="entry-date en">Feb 2017 – May 2023</div>
+      <div class="entry-date ar">فبراير 2017 – مايو 2023</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Senior Respiratory Care Practitioner</div>
+      <div class="entry-title ar">ممارس رعاية تنفسية أول</div>
+      <div class="entry-org en">Paediatrics Respiratory Care Services, PSMMC, Riyadh</div>
+      <div class="entry-org ar">خدمات الرعاية التنفسية للأطفال، مستشفى الأمير سلطان العسكري، الرياض</div>
+      <div class="entry-date en">Jan – Feb 2017</div>
+      <div class="entry-date ar">يناير – فبراير 2017</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Respiratory Care Lecturer</div>
+      <div class="entry-title ar">محاضر في الرعاية التنفسية</div>
+      <div class="entry-org en">Centre for Health Studies, PSMMC, Riyadh</div>
+      <div class="entry-org ar">مركز الدراسات الصحية، مستشفى الأمير سلطان العسكري، الرياض</div>
+      <div class="entry-date en">Oct 2015 – Jan 2017</div>
+      <div class="entry-date ar">أكتوبر 2015 – يناير 2017</div>
+    </div>
+  </section>
+
+  <!-- ── AWARDS ── -->
+  <section id="awards">
+    <div class="section-header">
+      <h2 class="section-title en">Awards</h2>
+      <h2 class="section-title ar">الجوائز</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-title en">Excellence in Early Career Research</div>
+        <div class="award-title ar">التميز في البحث المبكر</div>
+        <div class="award-org en">Rehabilitation Health Sciences Dept.</div>
+        <div class="award-org ar">قسم علوم الصحة التأهيلية</div>
+        <div class="award-year">May 2025</div>
+      </div>
+      <div class="award-card">
+        <div class="award-title en">Best Early Career Researcher</div>
+        <div class="award-title ar">أفضل باحث في بداية مسيرته</div>
+        <div class="award-org en">College of Applied Medical Sciences, KSU</div>
+        <div class="award-org ar">كلية العلوم الطبية التطبيقية، جامعة الملك سعود</div>
+        <div class="award-year">Oct 2024</div>
+      </div>
+      <div class="award-card">
+        <div class="award-title en">Excellence in Early Career Research</div>
+        <div class="award-title ar">التميز في البحث المبكر</div>
+        <div class="award-org en">Rehabilitation Health Sciences Dept.</div>
+        <div class="award-org ar">قسم علوم الصحة التأهيلية</div>
+        <div class="award-year">Jun 2024</div>
+      </div>
+      <div class="award-card">
+        <div class="award-title en">HEFi Horizon Award</div>
+        <div class="award-title ar">جائزة HEFi Horizon</div>
+        <div class="award-org en">University of Birmingham</div>
+        <div class="award-org ar">جامعة برمنغهام</div>
+        <div class="award-year">Oct 2019</div>
+      </div>
+      <div class="award-card">
+        <div class="award-title en">Academic Achievement Award</div>
+        <div class="award-title ar">جائزة التفوق الأكاديمي</div>
+        <div class="award-org en">Saudi Cultural Bureau, UK</div>
+        <div class="award-org ar">الملحقية الثقافية السعودية، المملكة المتحدة</div>
+        <div class="award-year">May 2021</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESEARCH PROFILES ── -->
+  <section id="profiles">
+    <div class="section-header">
+      <h2 class="section-title en">Research Profiles</h2>
+      <h2 class="section-title ar">الملفات البحثية</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="profile-cards">
+
+      <!-- KSU Faculty Page -->
+      <a class="profile-card" href="https://faculty.ksu.edu.sa/en/malmeshari" target="_blank">
+        <div class="profile-icon" style="background:#006633;">KSU</div>
+        <div class="profile-card-body">
+          <div class="profile-card-name en">KSU Faculty Profile</div>
+          <div class="profile-card-name ar">الصفحة الأكاديمية – جامعة الملك سعود</div>
+          <div class="profile-card-id">faculty.ksu.edu.sa</div>
+          <div class="profile-card-desc en">Official King Saud University faculty page</div>
+          <div class="profile-card-desc ar">الصفحة الرسمية في جامعة الملك سعود</div>
+        </div>
+        <div class="profile-arrow">→</div>
+      </a>
+
+      <a class="profile-card" href="https://orcid.org/0000-0001-8449-9491" target="_blank">
+        <div class="profile-icon" style="background:#a6ce39;">iD</div>
+        <div class="profile-card-body">
+          <div class="profile-card-name">ORCiD</div>
+          <div class="profile-card-id">0000-0001-8449-9491</div>
+          <div class="profile-card-desc en">Persistent researcher identifier</div>
+          <div class="profile-card-desc ar">المعرّف الدائم للباحث</div>
+        </div>
+        <div class="profile-arrow">→</div>
+      </a>
+
+      <a class="profile-card" href="https://www.webofscience.com/wos/author/record/ABF-2385-2020" target="_blank">
+        <div class="profile-icon" style="background:#e05c2a;">WoS</div>
+        <div class="profile-card-body">
+          <div class="profile-card-name">Web of Science</div>
+          <div class="profile-card-id">ABF-2385-2020</div>
+          <div class="profile-card-desc en">Citation index &amp; impact metrics</div>
+          <div class="profile-card-desc ar">مؤشر الاستشهادات والتأثير</div>
+        </div>
+        <div class="profile-arrow">→</div>
+      </a>
+
+      <a class="profile-card" href="https://www.scopus.com/authid/detail.uri?authorId=57219928635" target="_blank">
+        <div class="profile-icon" style="background:#ff6b00;">SCO</div>
+        <div class="profile-card-body">
+          <div class="profile-card-name">Scopus</div>
+          <div class="profile-card-id">57219928635</div>
+          <div class="profile-card-desc en">Elsevier abstract &amp; citation database</div>
+          <div class="profile-card-desc ar">قاعدة بيانات إلزفير للاستشهادات</div>
+        </div>
+        <div class="profile-arrow">→</div>
+      </a>
+
+      <a class="profile-card" href="https://scholar.google.co.uk/citations?user=D4TjV18AAAAJ" target="_blank">
+        <div class="profile-icon" style="background:#4285F4;">GS</div>
+        <div class="profile-card-body">
+          <div class="profile-card-name">Google Scholar</div>
+          <div class="profile-card-id">D4TjV18AAAAJ</div>
+          <div class="profile-card-desc en">h-index, citations &amp; articles</div>
+          <div class="profile-card-desc ar">مؤشر h والاستشهادات والمقالات</div>
+        </div>
+        <div class="profile-arrow">→</div>
+      </a>
+
+      <a class="profile-card" href="https://pubmed.ncbi.nlm.nih.gov/?term=Mohammed+Almeshari" target="_blank">
+        <div class="profile-icon" style="background:#326599; font-size:.5rem; text-align:center; line-height:1.3;">Pub Med</div>
+        <div class="profile-card-body">
+          <div class="profile-card-name">PubMed / NCBI</div>
+          <div class="profile-card-id">Mohammed Almeshari</div>
+          <div class="profile-card-desc en">NIH biomedical literature database</div>
+          <div class="profile-card-desc ar">قاعدة بيانات الأدبيات الطبية لـ NIH</div>
+        </div>
+        <div class="profile-arrow">→</div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="section-header">
+      <h2 class="section-title en">Skills &amp; Methodologies</h2>
+      <h2 class="section-title ar">المهارات والمنهجيات</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4 class="en">Languages &amp; Tools</h4>
+        <h4 class="ar">اللغات والأدوات</h4>
+        <ul>
+          <li class="en">English (IELTS 7.0)</li>
+          <li class="ar">الإنجليزية (IELTS 7.0)</li>
+          <li class="en">Arabic (Native)</li>
+          <li class="ar">العربية (لغة أم)</li>
+          <li class="en">MS Office suite</li>
+          <li class="ar">حزمة Microsoft Office</li>
+          <li class="en">Statistical analysis with R</li>
+          <li class="ar">التحليل الإحصائي ببرنامج R</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4 class="en">Systematic Reviews</h4>
+        <h4 class="ar">المراجعات المنهجية</h4>
+        <ul>
+          <li class="en">Cochrane-compliant methodology</li>
+          <li class="ar">المنهجية وفق معايير كوكرين</li>
+          <li class="en">PROSPERO protocol registration</li>
+          <li class="ar">تسجيل البروتوكولات في PROSPERO</li>
+          <li class="en">Risk of Bias assessment (RoB)</li>
+          <li class="ar">تقييم خطر التحيز</li>
+          <li class="en">Statistical data synthesis</li>
+          <li class="ar">تجميع البيانات الإحصائية</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4 class="en">Real World Health Data</h4>
+        <h4 class="ar">البيانات الصحية الواقعية</h4>
+        <ul>
+          <li class="en">Protocol &amp; ethics governance</li>
+          <li class="ar">حوكمة البروتوكولات والأخلاقيات</li>
+          <li class="en">Data cleaning &amp; wrangling in R</li>
+          <li class="ar">تنظيف البيانات ومعالجتها</li>
+          <li class="en">Visualisation &amp; reporting</li>
+          <li class="ar">التصور البياني وإعداد التقارير</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4 class="en">Clinical Studies</h4>
+        <h4 class="ar">الدراسات السريرية</h4>
+        <ul>
+          <li class="en">Protocol development</li>
+          <li class="ar">تطوير البروتوكولات</li>
+          <li class="en">GCP qualified (HRA/NIHR, UK)</li>
+          <li class="ar">مؤهل في الممارسة السريرية الجيدة</li>
+          <li class="en">Patient-facing materials</li>
+          <li class="ar">مواد التواصل مع المرضى</li>
+          <li class="en">Data collection tools</li>
+          <li class="ar">أدوات جمع البيانات</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROFESSIONAL ORGS ── -->
+  <section>
+    <div class="section-header">
+      <h2 class="section-title en">Professional Organizations</h2>
+      <h2 class="section-title ar">الانتماءات المهنية</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="org-list">
+      <div class="org-row">
+        <div class="org-row-main">
+          <span class="org-name en">American Association of Respiratory Care (AARC) -</span>
+          <span class="org-name ar">الجمعية الأمريكية للرعاية التنفسية -</span>
+          <span class="org-rank en">Member</span>
+          <span class="org-rank ar">عضو</span>
+        </div>
+        <span class="org-since en">Member since Oct 2013</span>
+        <span class="org-since ar">عضو منذ أكتوبر 2013</span>
+      </div>
+      <div class="org-row">
+        <div class="org-row-main">
+          <span class="org-name en">Saudi Commission for Health Specialties (SCFHS) -</span>
+          <span class="org-name ar">الهيئة السعودية للتخصصات الصحية -</span>
+          <span class="org-rank en">Senior Specialist — Respiratory Care</span>
+          <span class="org-rank ar">أخصائي أول — الرعاية التنفسية</span>
+        </div>
+        <span class="org-since en">Member since May 2009</span>
+        <span class="org-since ar">عضو منذ مايو 2009</span>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+<footer>
+  <p class="en">Dr. Mohammed A. Almeshari &nbsp;·&nbsp; King Saud University, Riyadh &nbsp;·&nbsp;
+    <a href="https://malmeshari.bio.link/" target="_blank">malmeshari.bio.link</a>
+  </p>
+  <p class="ar">د. محمد بن أحمد المشاري &nbsp;·&nbsp; جامعة الملك سعود، الرياض</p>
+</footer>
+
+</body>
+</html>
