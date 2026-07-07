@@ -390,6 +390,13 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, var(--amber), transparent);
     }
+    .award-card.featured { border-color: var(--amber-lt); background: linear-gradient(180deg, var(--amber-bg), var(--surface) 60%); }
+    .award-badge {
+      display: inline-block; font-size: .58rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--amber); background: var(--amber-bg);
+      border: 1px solid rgba(154,111,47,.3); border-radius: 20px;
+      padding: .1rem .55rem; margin-bottom: .45rem;
+    }
     .award-title { font-family: var(--serif); font-size: .9rem; font-weight: 700; color: var(--text); line-height: 1.3; }
     .award-org   { font-size: .71rem; color: var(--muted); margin-top: .3rem; line-height: 1.4; }
     .award-year  { font-size: .69rem; color: var(--amber); font-weight: 600; margin-top: .4rem; }
@@ -504,7 +511,7 @@
       });
 
       /* ── Active nav links on scroll ── */
-      var sections = ['education','certs','experience','awards','profiles','skills'];
+      var sections = ['education','certs','experience','awards','service','talks','profiles','skills'];
       function navHeight() { return document.getElementById('main-nav').offsetHeight; }
 
       function onScroll() {
@@ -538,6 +545,8 @@
       <li><a href="#certs"       data-section="certs">Certifications</a></li>
       <li><a href="#experience"  data-section="experience">Experience</a></li>
       <li><a href="#awards"      data-section="awards">Awards</a></li>
+      <li><a href="#service"     data-section="service">Service</a></li>
+      <li><a href="#talks"       data-section="talks">Conferences</a></li>
       <li><a href="#profiles"    data-section="profiles">Research</a></li>
       <li><a href="#skills"      data-section="skills">Skills</a></li>
     </ul>
@@ -546,6 +555,8 @@
       <li><a href="#certs"       data-section="certs">الشهادات</a></li>
       <li><a href="#experience"  data-section="experience">الخبرة</a></li>
       <li><a href="#awards"      data-section="awards">الجوائز</a></li>
+      <li><a href="#service"     data-section="service">الخدمة</a></li>
+      <li><a href="#talks"       data-section="talks">المؤتمرات</a></li>
       <li><a href="#profiles"    data-section="profiles">الأبحاث</a></li>
       <li><a href="#skills"      data-section="skills">المهارات</a></li>
     </ul>
@@ -567,6 +578,10 @@
   <a href="#experience" class="ar">الخبرة</a>
   <a href="#awards"     class="en">Awards</a>
   <a href="#awards"     class="ar">الجوائز</a>
+  <a href="#service"    class="en">Service &amp; Talks</a>
+  <a href="#service"    class="ar">الخدمة والمحاضرات</a>
+  <a href="#talks"      class="en">Conferences</a>
+  <a href="#talks"      class="ar">المؤتمرات</a>
   <a href="#profiles"   class="en">Research Profiles</a>
   <a href="#profiles"   class="ar">الملفات البحثية</a>
   <a href="#skills"     class="en">Skills</a>
@@ -655,6 +670,11 @@
     </div>
     <div class="pill-grid">
       <div class="pill">
+        <span class="en">Certified KPI Practitioner – NCPM (Adaa)</span>
+        <span class="ar">ممارس معتمد في مؤشرات الأداء الرئيسية – المركز الوطني لقياس الأداء (أداء)</span>
+        <span class="pill-year">2026</span>
+      </div>
+      <div class="pill">
         <span class="en">Senior Specialist, Respiratory Care – SCFHS</span>
         <span class="ar">أخصائي أول، الرعاية التنفسية – الهيئة السعودية للتخصصات الصحية</span>
         <span class="pill-year">2017</span>
@@ -716,6 +736,19 @@
       <div class="entry-bullets"><ul>
         <li class="en">Co-supervising a PhD student on small airways function during asthma exacerbations; participating in related research projects.</li>
         <li class="ar">الإشراف المشترك على طالب دكتوراه في وظيفة الشعب الهوائية الصغيرة أثناء نوبات الربو.</li>
+      </ul></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Editorial Board Member</div>
+      <div class="entry-title ar">عضو هيئة التحرير</div>
+      <div class="entry-org en">BMC Pulmonary Medicine (Springer Nature)</div>
+      <div class="entry-org ar">دورية BMC Pulmonary Medicine (سبرينغر نيتشر)</div>
+      <div class="entry-date en">May 2026 – Present</div>
+      <div class="entry-date ar">مايو 2026 – حاضر</div>
+      <div class="entry-bullets"><ul>
+        <li class="en">Handle manuscript assessment, reviewer selection, and editorial recommendations in respiratory medicine.</li>
+        <li class="ar">تقييم المخطوطات واختيار المحكمين وتقديم التوصيات التحريرية في مجال طب الجهاز التنفسي.</li>
       </ul></div>
     </div>
 
@@ -785,6 +818,22 @@
       <div class="section-line"></div>
     </div>
     <div class="awards-grid">
+      <div class="award-card featured">
+        <span class="award-badge en">Latest</span>
+        <span class="award-badge ar">الأحدث</span>
+        <div class="award-title en">Best Publication Award</div>
+        <div class="award-title ar">جائزة أفضل بحث منشور</div>
+        <div class="award-org en">College of Applied Medical Sciences &amp; Rehabilitation Health Sciences Dept., KSU — Annual RHS Scientific Day 2025/2026</div>
+        <div class="award-org ar">كلية العلوم الطبية التطبيقية وقسم علوم التأهيل الصحي، جامعة الملك سعود — اليوم العلمي السنوي للقسم 2025/2026</div>
+        <div class="award-year">May 2026</div>
+      </div>
+      <div class="award-card">
+        <div class="award-title en">Waed (Promising Researcher) Program</div>
+        <div class="award-title ar">برنامج واعد للباحثين</div>
+        <div class="award-org en">Deanship of Scientific Research, KSU — early-career program for high-impact publication</div>
+        <div class="award-org ar">عمادة البحث العلمي، جامعة الملك سعود — برنامج الباحثين الواعدين</div>
+        <div class="award-year">2025</div>
+      </div>
       <div class="award-card">
         <div class="award-title en">Excellence in Early Career Research</div>
         <div class="award-title ar">التميز المبكر في المسيرة البحثة</div>
@@ -820,6 +869,112 @@
         <div class="award-org ar">الملحقية الثقافية السعودية، المملكة المتحدة</div>
         <div class="award-year">May 2021</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICE & TALKS ── -->
+  <section id="service">
+    <div class="section-header">
+      <h2 class="section-title en">Service, Invited Talks &amp; Mentoring</h2>
+      <h2 class="section-title ar">الخدمة والمحاضرات والإرشاد</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Panel Chair &amp; Delegate</div>
+      <div class="entry-title ar">رئيس جلسة ومندوب</div>
+      <div class="entry-org en">3rd International Conference of the College of Applied Medical Sciences, KSU — “The Future of Healthcare &amp; Improving Healthy Lifespan”</div>
+      <div class="entry-org ar">المؤتمر الدولي الثالث لكلية العلوم الطبية التطبيقية، جامعة الملك سعود — «مستقبل الرعاية الصحية وتحسين العمر الصحي»</div>
+      <div class="entry-date">Feb 2024</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Invited Speaker — RESY Seminar</div>
+      <div class="entry-title ar">متحدث مدعو — ندوة RESY</div>
+      <div class="entry-org en">COAMS 3rd Research &amp; Innovation Days, KSAU-HS, Riyadh</div>
+      <div class="entry-org ar">أيام البحث والابتكار الثالثة، جامعة الملك سعود بن عبدالعزيز للعلوم الصحية، الرياض</div>
+      <div class="entry-date">Apr–May 2024</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Invited Speaker</div>
+      <div class="entry-title ar">متحدث مدعو</div>
+      <div class="entry-org en">Systematic Review &amp; Bibliometric Analysis Workshop, KSAU-HS</div>
+      <div class="entry-org ar">ورشة المراجعة المنهجية والتحليل الببليومتري، جامعة الملك سعود بن عبدالعزيز للعلوم الصحية</div>
+      <div class="entry-date">2024</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Research Scientist / Mentor</div>
+      <div class="entry-title ar">باحث / مرشد علمي</div>
+      <div class="entry-org en">FANAR Scientists Research Summer School (inaugural edition), Central Research Laboratory, KSU × Johns Hopkins Aramco Healthcare</div>
+      <div class="entry-org ar">مدرسة العلماء البحثية الصيفية: فنار (النسخة الأولى)، مختبر البحث المركزي، جامعة الملك سعود × مركز جونز هوبكنز أرامكو الطبي</div>
+      <div class="entry-date">Jul 2025</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Mentor</div>
+      <div class="entry-title ar">مرشد</div>
+      <div class="entry-org en">Emergency &amp; Safety Sciences Hackathon, Prince Sultan bin Abdulaziz College for EMS, KSU</div>
+      <div class="entry-org ar">هاكاثون علوم الطوارئ والسلامة، كلية الأمير سلطان بن عبدالعزيز للخدمات الطبية الطارئة، جامعة الملك سعود</div>
+      <div class="entry-date">2025</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Poster Judge</div>
+      <div class="entry-title ar">محكّم ملصقات علمية</div>
+      <div class="entry-org en">Health Professions Conference, KSAU-HS (Deanship of Students Affairs)</div>
+      <div class="entry-org ar">مؤتمر التخصصات الصحية، جامعة الملك سعود بن عبدالعزيز للعلوم الصحية (عمادة شؤون الطلاب)</div>
+      <div class="entry-date">2025</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">Curriculum Validation Panel — External Reviewer (muhakkim)</div>
+      <div class="entry-title ar">محكّم خطة دراسية — مراجع خارجي</div>
+      <div class="entry-org en">Reviewed &amp; endorsed a BSc Respiratory Care study plan; certified alignment with the National Qualifications Framework &amp; Ministry of Education standards</div>
+      <div class="entry-org ar">مراجعة واعتماد خطة دراسية لبكالوريوس الرعاية التنفسية، بما يتوافق مع الإطار الوطني للمؤهلات ومعايير وزارة التعليم</div>
+      <div class="entry-date">Aug 2023</div>
+    </div>
+  </section>
+
+  <!-- ── CONFERENCES ── -->
+  <section id="talks">
+    <div class="section-header">
+      <h2 class="section-title en">Recent Conferences &amp; Presentations</h2>
+      <h2 class="section-title ar">المؤتمرات والعروض الحديثة</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">ATS 2026 International Conference — Attendee</div>
+      <div class="entry-title ar">المؤتمر الدولي ATS 2026 — حضور</div>
+      <div class="entry-org en">American Thoracic Society, United States</div>
+      <div class="entry-org ar">الجمعية الأمريكية لطب الصدرية، الولايات المتحدة</div>
+      <div class="entry-date">May 2026</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">AARC Congress 2025 — Poster Presentation</div>
+      <div class="entry-title ar">مؤتمر AARC 2025 — عرض ملصق علمي</div>
+      <div class="entry-org en">American Association for Respiratory Care, United States</div>
+      <div class="entry-org ar">الجمعية الأمريكية للرعاية التنفسية، الولايات المتحدة</div>
+      <div class="entry-date">Dec 2025</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">ERS Congress 2025 — Poster Presentation</div>
+      <div class="entry-title ar">مؤتمر ERS 2025 — عرض ملصق علمي</div>
+      <div class="entry-org en">Long-term e-cigarette use &amp; FeNO: a systematic review &amp; meta-analysis — Amsterdam, Netherlands</div>
+      <div class="entry-org ar">الاستخدام طويل المدى للسجائر الإلكترونية وعلامة FeNO: مراجعة منهجية وتحليل تلوي — أمستردام، هولندا</div>
+      <div class="entry-date">Sep–Oct 2025</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-title en">PG7 Masterclass in COPD — ERS Postgraduate Course</div>
+      <div class="entry-title ar">دورة الخبراء في الانسداد الرئوي المزمن PG7 — دورة ERS للدراسات العليا</div>
+      <div class="entry-org en">European Respiratory Society</div>
+      <div class="entry-org ar">الجمعية الأوروبية لأمراض الجهاز التنفسي</div>
+      <div class="entry-date">Sep 2025</div>
     </div>
   </section>
 
